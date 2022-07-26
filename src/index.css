@@ -8,6 +8,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+  background-color: rgb(36, 35, 35);
 }
 
 .container {
@@ -15,7 +16,8 @@ body {
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid steelblue;
+  border: 5px solid rgb(225, 57, 172);
+  background-color: deepskyblue;
   padding: 30px;
   border-radius: 5px;
 }
@@ -62,7 +64,7 @@ body {
 }
 
 .task.reminder {
-  border-left: 5px solid green;
+  border-left: 25px solid rgb(252, 11, 228);
 }
 
 .task h3 {
@@ -112,7 +114,7 @@ footer {
 }
 
 /* Footer
-© 2022 GitHub, Inc.
+© 2022 Learn & Create & Have Fun While Your Doing It Inc.
 
 Footer navigation
 Terms
