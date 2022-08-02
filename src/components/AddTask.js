@@ -1,33 +1,70 @@
 import { useState } from "react";
 
-const AddTask = () => {
- const [task, setTask] = useState("");
- const [day, setDay] = useState("");
- const [reminder, setReminder] = useState(false);
- // const [completed, setCompleted] = useState(false); create a ternary operator to check if the task is completed or not and if it is then set the completed to true and then change the color of the overlay of the task box to show capitalized text saying "Completed"!
- 
+const AddTask = ({ onAdd }) => {
+  const [text, setText] = useState("");
+  const [day, setDay] = useState("");
+  const [note, setNote] = useState("");
+  const [reminder, setReminder] = useState(false);
+  // const [completed, setCompleted] = useState(false); create a ternary operator to check if the task is completed or not and if it is then set the completed to true and then change the color of the overlay of the task box to show capitalized text saying "Completed"!
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (!text) {
+      alert("Please enter a task.");
+      return;
+    }
+
+    onAdd({ text, day, note, reminder });
+
+    setText("");
+    setDay("");
+    setNote("");
+    setReminder(false);
+  };
+
   return (
-    <from className="add-form">
-     <div className="form-control">
-      <label>Task</label>
-      <input type="text"  placeholder="Add Task" />
-     </div>
-     <div className="form-control">
-      <label>Day</label>
-      <input type="text"  placeholder="Add Date & Time" />
-     </div>
-     <div className="form-control">
-      <label>Notes</label>
-      <input type="text"  placeholder="Add some notes" />
-     </div>
-     <div className="form-control form-control-check">
-      <label>Set Reminder</label>
-      <input type="checkbox"  placeholder="Add Reminder" />
-     </div>
+    <form className="add-form" onSubmit={onSubmit}>
+      <div className="form-control">
+        <label>Task</label>
+        <input
+          type="text"
+          placeholder="Add Task"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+      </div>
+      <div className="form-control">
+        <label>Day</label>
+        <input
+          type="text"
+          placeholder="Add Date & Time"
+          value={day}
+          onChange={(e) => setDay(e.target.value)}
+        />
+      </div>
+      <div className="form-control">
+        <label>Notes</label>
+        <input
+          type="text"
+          placeholder="Add some notes"
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+        />
+      </div>
+      <div className="form-control form-control-check">
+        <label>Set Reminder</label>
+        <input
+          type="checkbox"
+          checked={reminder}
+          value={reminder}
+          onChange={(e) => setReminder(e.currentTarget.checked)}
+        />
+      </div>
 
-     <input type="submit" value="Save Task" className="btn btn-block"/>
-    </from>
-  )
-}
+      <input type="submit" value="Save Task" className="btn btn-block" />
+    </form>
+  );
+};
 
-export default AddTask
+export default AddTask;
